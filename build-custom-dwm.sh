@@ -10,10 +10,13 @@ cd dwm/patches
 sh get-patches.sh
 cd ..
 
-patch  < patches/dwm-cfacts-vanitygaps-6.4_combo.diff
-patch  < patches/dwm-alpha-20230401-348f655.diff
-patch  < patches/dwm-autostart-20210120-cb3f58a.diff
-patch  < patches/dwm-bartoggle-6.4.diff
+#patch < patches/dwm-systray-20230922-9f88553.diff
+patch < patches/dwm-cfacts-vanitygaps-6.4_combo.diff
+patch < patches/dwm-alpha-20230401-348f655.diff
+patch < patches/dwm-autostart-20210120-cb3f58a.diff
+patch < patches/dwm-bartoggle-6.4.diff
+
+
 cp -v config.def.h ../config.def.h
 cd ..
 diff -U 3 config.def.h config.def.custom.h > to-be-changed.diff
