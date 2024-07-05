@@ -38,7 +38,7 @@
 # git rm --cached file.txt
 
 if [ -d dwm ]; then
-	rm -r dwm
+	sudo rm -r dwm
 fi
 
 # Below command will backup everything inside the project folder
