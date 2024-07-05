@@ -37,6 +37,10 @@
 # https://www.baeldung.com/ops/git-remove-file-without-deleting-it
 # git rm --cached file.txt
 
+if [ -d dwm ]; then
+	rm -r dwm
+fi
+
 # Below command will backup everything inside the project folder
 git add --all .
 
