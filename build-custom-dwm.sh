@@ -1,5 +1,6 @@
 #!/bin/bash
 #set -e
+#set -x
 #tput setaf 0 = black
 #tput setaf 1 = red
 #tput setaf 2 = green
@@ -136,7 +137,7 @@ patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff
 # personal config
 cp -v config.def.h ../config.def.h
 cd ..
-diff -U 3 config.def.h config.def.custom.h > to-be-changed.diff
+diff -u config.def.h config.def.custom.h > to-be-changed.diff
 cp -v to-be-changed.diff dwm
 cd dwm
 patch < to-be-changed.diff
