@@ -24,7 +24,7 @@ sudo pacman -S --noconfirm --needed go
 sudo pacman -S --noconfirm --needed rofi-lbonn-wayland
 sudo pacman -S --noconfirm --needed numlockx
 sudo pacman -S --noconfirm --needed feh
-sudo pacman -S --noconfirm --needed xrandr
+sudo pacman -S --noconfirm --needed xorg-xrandr
 sudo pacman -S --noconfirm --needed arandr
 
 # File management
