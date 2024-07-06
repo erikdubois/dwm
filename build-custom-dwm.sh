@@ -4,6 +4,7 @@ sudo rm -r dwm
 sudo cp -v dwm.desktop /usr/share/xsessions/dwm.desktop
 mkdir ~/.config/dwm
 cp -v autostart.sh ~/.config/dwm
+cp -v sxhkdrc ~/.config/dwm
 git clone https://git.suckless.org/dwm
 cp -v rebuild.sh dwm
 mkdir dwm/patches
