@@ -41,6 +41,10 @@ if [ -d dwm ]; then
 	sudo rm -r dwm
 fi
 
+if [ -d sysmon ]; then
+	sudo rm -r sysmon
+fi
+
 # Below command will backup everything inside the project folder
 git add --all .
 

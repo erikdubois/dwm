@@ -2,9 +2,11 @@
 
 # install packages
 sudo pacman -S --noconfirm sxhkd
+sudo pacman -S --noconfirm go
 
 # File management
 sudo rm -r dwm
+sudo rm -r sysmon
 sudo cp -v dwm.desktop /usr/share/xsessions/dwm.desktop
 mkdir ~/.config/dwm
 cp -v autostart.sh ~/.config/dwm
@@ -40,3 +42,11 @@ echo "Change directory for autostart"
 sed -i 's|static const char localshare\[] = ".local/share";|static const char localshare\[] = ".config";|' dwm.c
 
 sh rebuild.sh
+cd ..
+# https://github.com/blmayer/sysmon
+echo "Adding sysmon"
+git clone https://github.com/blmayer/sysmon
+cp build-sysmon.sh sysmon
+cd sysmon
+sed -i 's|PREFIX=${HOME}/.local|PREFIX=/usr|' Makefile
+sh build-sysmon.sh
