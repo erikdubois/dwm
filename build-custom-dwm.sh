@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#install packages
+sudo pacman -S --noconfirm sxhkd
+
 sudo rm -r dwm
 sudo cp -v dwm.desktop /usr/share/xsessions/dwm.desktop
 mkdir ~/.config/dwm
