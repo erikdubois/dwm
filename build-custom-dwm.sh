@@ -62,3 +62,17 @@ cp rebuild-sysmon.sh sysmon
 cd sysmon
 sed -i 's|PREFIX=${HOME}/.local|PREFIX=/usr|' Makefile
 sh rebuild-sysmon.sh
+
+echo
+echo
+tput setaf 2
+echo "################################################################"
+echo "################################################################"
+echo "################################################################"
+echo "COMPARE YOUR CUSTOM CONFIG.DEF.CUSTOM.H WITH CONFIG.DEF.H"
+echo "OR ELSE INTRODUCE MISTAKES"
+echo "################################################################"
+echo "################################################################"
+echo "################################################################"
+tput sgr0
+echo
