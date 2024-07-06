@@ -45,8 +45,8 @@ if [ -d sysmon ]; then
 	sudo rm -r sysmon
 fi
 
-rm *.rej
-rm *.orig
+find . -type f -name "*.rej" -exec rm -f {} \; -print
+find . -type f -name "*.orig" -exec rm -f {} \; -print
 
 # Below command will backup everything inside the project folder
 git add --all .
