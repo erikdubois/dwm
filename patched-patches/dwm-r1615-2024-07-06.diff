@@ -1,0 +1,83 @@
+--- config.def.h.orig	2024-07-06 21:19:54.778313804 +0200
++++ config.def.h	2024-07-06 21:19:54.781647126 +0200
+@@ -145,6 +145,7 @@
+ 	TAGKEYS(                        XK_7,                      6)
+ 	TAGKEYS(                        XK_8,                      7)
+ 	TAGKEYS(                        XK_9,                      8)
++    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
+ 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+ };
+ 
+@@ -164,4 +165,3 @@
+ 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+ 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+ };
+-
+--- /dev/null	2024-07-06 20:17:20.030445772 +0200
++++ selfrestart.c	2024-07-06 21:19:54.781647126 +0200
+@@ -0,0 +1,65 @@
++#include <unistd.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <stdio.h>
++#include <stdlib.h>
++
++/**
++ * Magically finds the current's executable path
++ *
++ * I'm doing the do{}while(); trick because Linux (what I'm running) is not
++ * POSIX compilant and so lstat() cannot be trusted on /proc entries
++ *
++ * @return char* the path of the current executable
++ */
++char *get_dwm_path(){
++    struct stat s;
++    int r, length, rate = 42;
++    char *path = NULL;
++
++    if(lstat("/proc/self/exe", &s) == -1){
++        perror("lstat:");
++        return NULL;
++    }
++
++    length = s.st_size + 1 - rate;
++
++    do{
++        length+=rate;
++
++        free(path);
++        path = malloc(sizeof(char) * length);
++
++        if(path == NULL){
++            perror("malloc:");
++            return NULL;
++        }
++
++        r = readlink("/proc/self/exe", path, length);
++
++        if(r == -1){
++            perror("readlink:");
++            return NULL;
++        }
++    }while(r >= length);
++
++    path[r] = '\0';
++
++    return path;
++}
++
++/**
++ * self-restart
++ *
++ * Initially inspired by: Yu-Jie Lin
++ * https://sites.google.com/site/yjlnotes/notes/dwm
++ */
++void self_restart(const Arg *arg) {
++    char *const argv[] = {get_dwm_path(), NULL};
++
++    if(argv[0] == NULL){
++        return;
++    }
++
++    execv(argv[0], argv);
++}

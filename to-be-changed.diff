@@ -1,5 +1,5 @@
---- config.def.h	2024-07-06 17:57:44.730694605 +0200
-+++ config.def.custom.h	2024-07-06 16:07:45.805201836 +0200
+--- config.def.h	2024-07-06 21:52:20.041501275 +0200
++++ config.def.custom.h	2024-07-06 21:52:04.845013524 +0200
 @@ -49,7 +49,7 @@
  };
  
@@ -9,7 +9,7 @@
  static const int nmaster     = 1;    /* number of clients in master area */
  static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
  static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-@@ -77,7 +77,7 @@
+@@ -76,7 +76,7 @@
  };
  
  /* key definitions */
@@ -18,7 +18,7 @@
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -90,11 +90,11 @@
+@@ -89,11 +89,11 @@
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -32,3 +32,12 @@
  	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+@@ -127,7 +127,7 @@
+ 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+ 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
++	{ MODKEY|ControlMask,			XK_comma,  cyclelayout,    {.i = -1 } },
+ 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },

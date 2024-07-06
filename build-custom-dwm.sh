@@ -1,14 +1,39 @@
 #!/bin/bash
+#set -e
+#tput setaf 0 = black
+#tput setaf 1 = red
+#tput setaf 2 = green
+#tput setaf 3 = yellow
+#tput setaf 4 = dark blue
+#tput setaf 5 = purple
+#tput setaf 6 = cyan
+#tput setaf 7 = gray
+#tput setaf 8 = light blue
+
+echo
+tput setaf 2
+echo "################################################################"
+echo "BUILDING DWM"
+echo "################################################################"
+tput sgr0
+echo
 
 # install packages
 sudo pacman -S --noconfirm sxhkd
 sudo pacman -S --noconfirm go
 
 # File management
-sudo rm -r dwm
-sudo rm -r sysmon
-sudo cp -v dwm.desktop /usr/share/xsessions/dwm.desktop
-mkdir ~/.config/dwm
+if [ -d dwm ]; then
+	sudo rm -r dwm
+fi
+if [ -d sysmon ] ; then
+	sudo rm -r sysmon
+fi
+
+sudo cp -vf dwm.desktop /usr/share/xsessions/dwm.desktop
+if [ ! -d ~/.config/dwm ]; then
+	mkdir ~/.config/dwm
+fi
 cp -v autostart.sh ~/.config/dwm
 cp -v sxhkdrc ~/.config/dwm
 git clone https://git.suckless.org/dwm
@@ -31,16 +56,77 @@ cd ..
 #exit 1
 
 # patching
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 1"
+echo "################################################################"
+tput sgr0
+echo
 patch < patches/dwm-cfacts-vanitygaps-6.4_combo.diff
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 2"
+echo "################################################################"
+tput sgr0
+echo
 patch < patches/dwm-alpha-20230401-348f655.diff
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 3"
+echo "################################################################"
+tput sgr0
+echo
 patch < patches/dwm-autostart-20210120-cb3f58a.diff
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 4"
+echo "################################################################"
+tput sgr0
+echo
 patch < patches/dwm-bartoggle-6.4.diff
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 5"
+echo "################################################################"
+tput sgr0
+echo
 patch < patches/dwm-alwayscenter-20200625-f04cac6.diff
-# personal patching as official did not work
-patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff 
+tput setaf 2
+echo "################################################################"
+echo "Patch 6"
+echo "################################################################"
+tput sgr0
+echo
+patch < patches/dwm-dragmfact-6.2.diff
 
-# failed
-#patch < patches/dwm-restartsig-20180523-6.2.diff
+# personal patching as official did not work
+tput setaf 2
+echo "################################################################"
+echo "Patch 7"
+echo "################################################################"
+tput sgr0
+echo
+patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff
+
+#patch < patched-patches/dwm-r1615-2024-07-06.diff
+# exit 1
+# echo "HERE"
+# patch < patches/dwm-r1615-selfrestart.diff
+
+# patch < patches/dwm-winicon-6.3-v2.1.diff
+
+# exit 1
+# patch < patches/dwm-movestack-20211115-a786211.diff
+
+# patch < patches/dwm-r1615-selfrestart.diff
+# exit 1
+# patch < patches/dwm-underlinetags-6.2.diff
+# patch < patches/dwm-shif-tools-6.2.diff
 
 # personal config
 cp -v config.def.h ../config.def.h
