@@ -27,4 +27,8 @@ diff -U 3 config.def.h config.def.custom.h > to-be-changed.diff
 cp -v to-be-changed.diff dwm
 cd dwm
 patch < to-be-changed.diff
+echo "Change directory for autostart"
+sed -i 's|static const char localshare\[] = ".local/share";|static const char localshare\[] = ".config";|' dwm.c
+
+
 sh rebuild.sh
