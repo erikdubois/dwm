@@ -13,6 +13,12 @@ cp -v autostart.sh ~/.config/dwm
 cp -v sxhkdrc ~/.config/dwm
 git clone https://git.suckless.org/dwm
 cp -v rebuild.sh dwm
+
+# changed official patches
+mkdir dwm/patched-patches
+cp -v patched-patches/* dwm/patched-patches
+
+# offical patches
 mkdir dwm/patches
 cp -v get-patches.sh dwm/patches
 cd dwm/patches
@@ -29,6 +35,12 @@ patch < patches/dwm-cfacts-vanitygaps-6.4_combo.diff
 patch < patches/dwm-alpha-20230401-348f655.diff
 patch < patches/dwm-autostart-20210120-cb3f58a.diff
 patch < patches/dwm-bartoggle-6.4.diff
+patch < patches/dwm-alwayscenter-20200625-f04cac6.diff
+# personal patching as official did not work
+patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff 
+
+# failed
+#patch < patches/dwm-restartsig-20180523-6.2.diff
 
 # personal config
 cp -v config.def.h ../config.def.h
@@ -46,7 +58,7 @@ cd ..
 # https://github.com/blmayer/sysmon
 echo "Adding sysmon"
 git clone https://github.com/blmayer/sysmon
-cp build-sysmon.sh sysmon
+cp rebuild-sysmon.sh sysmon
 cd sysmon
 sed -i 's|PREFIX=${HOME}/.local|PREFIX=/usr|' Makefile
-sh build-sysmon.sh
+sh rebuild-sysmon.sh
