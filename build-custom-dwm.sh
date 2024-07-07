@@ -159,6 +159,15 @@ tput sgr0
 echo
 patch < patched-patches/dwm-r1615-2024-07-07.diff
 
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 9"
+echo "################################################################"
+tput sgr0
+echo
+patch < patches/dwm-actualfullscreen-20211013-cb3f58a.diff
+
 #patch < patched-patches/dwm-r1615-2024-07-06.diff
 # exit 1
 # echo "HERE"

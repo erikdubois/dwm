@@ -1,5 +1,6 @@
 #!/bin/bash
 
+wget https://dwm.suckless.org/patches/actualfullscreen/dwm-actualfullscreen-20211013-cb3f58a.diff
 wget https://dwm.suckless.org/patches/alpha/dwm-alpha-20230401-348f655.diff
 wget https://dwm.suckless.org/patches/alwayscenter/dwm-alwayscenter-20200625-f04cac6.diff
 wget https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff
