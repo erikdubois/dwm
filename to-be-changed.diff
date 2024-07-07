@@ -1,5 +1,5 @@
---- config.def.h	2024-07-07 08:43:08.237540476 +0200
-+++ config.def.custom.h	2024-07-07 08:16:59.575145628 +0200
+--- config.def.h	2024-07-07 17:38:29.229230717 +0200
++++ config.def.custom.h	2024-07-07 17:37:31.159766509 +0200
 @@ -3,10 +3,10 @@
  /* appearance */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -64,7 +64,7 @@
  	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-@@ -129,8 +129,8 @@
+@@ -129,16 +129,16 @@
  	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
  	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -75,3 +75,13 @@
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
  	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+ 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
++	{ MODKEY|ShiftMask,             XK_Left,  tagmon,         {.i = -1 } },
++	{ MODKEY|ShiftMask,             XK_Right, tagmon,         {.i = +1 } },
+ 	TAGKEYS(                        XK_1,                      0)
+ 	TAGKEYS(                        XK_2,                      1)
+ 	TAGKEYS(                        XK_3,                      2)
