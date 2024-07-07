@@ -139,6 +139,7 @@ echo
 patch < patches/dwm-dragmfact-6.2.diff
 
 # personal patching as official did not work
+
 echo
 tput setaf 2
 echo "################################################################"
@@ -147,6 +148,15 @@ echo "################################################################"
 tput sgr0
 echo
 patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff
+
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 8"
+echo "################################################################"
+tput sgr0
+echo
+patch < patched-patches/dwm-r1615-2024-07-06.diff
 
 #patch < patched-patches/dwm-r1615-2024-07-06.diff
 # exit 1
