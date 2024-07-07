@@ -14,7 +14,7 @@
 echo
 tput setaf 2
 echo "################################################################"
-echo "BUILDING DWM"
+echo "BUILDING SCRIPT"
 echo "################################################################"
 tput sgr0
 echo
@@ -36,32 +36,55 @@ if [ -d sysmon ] ; then
 	sudo rm -r sysmon
 fi
 
-sudo cp -vf dwm.desktop /usr/share/xsessions/dwm.desktop
 if [ ! -d ~/.config/dwm ]; then
 	mkdir ~/.config/dwm
 fi
+
+# making sure we can select dwm in SDDM, ...
+sudo cp -vf dwm.desktop /usr/share/xsessions/dwm.desktop
+
+# copying files to ~/.config/dwm
 cp -v autostart.sh ~/.config/dwm
 cp -v sxhkdrc ~/.config/dwm
-git clone https://git.suckless.org/dwm
-cp -v rebuild.sh dwm
 
-# changed official patches
-mkdir dwm/patched-patches
-cp -v patched-patches/* dwm/patched-patches
+# start from the official github of Dwm
+git clone https://git.suckless.org/dwm
+
+# copy the rebuild script to dwm
+cp -v rebuild.sh dwm
 
 # offical patches
 mkdir dwm/patches
 cp -v get-patches.sh dwm/patches
 cd dwm/patches
+echo
+tput setaf 2
+echo "################################################################"
+echo "GET PATCHES"
+echo "################################################################"
+tput sgr0
+echo
 sh get-patches.sh
 cd ..
+
+echo
+tput setaf 2
+echo "################################################################"
+echo "PATCHED PATCHES"
+echo "################################################################"
+tput sgr0
+echo
+
+# patched patches + copy
+mkdir patched-patches
+cp -v ../patched-patches/* patched-patches
 
 ## testing patch
 #patch < patches/dwm-systray-20230922-9f88553.diff
 #sh rebuild.sh
 #exit 1
 
-# patching
+# start of patching
 echo
 tput setaf 2
 echo "################################################################"
@@ -86,6 +109,10 @@ echo "################################################################"
 tput sgr0
 echo
 patch < patches/dwm-autostart-20210120-cb3f58a.diff
+
+echo "Change directory for autostart"
+sed -i 's|static const char localshare\[] = ".local/share";|static const char localshare\[] = ".config";|' dwm.c
+
 echo
 tput setaf 2
 echo "################################################################"
@@ -102,6 +129,7 @@ echo "################################################################"
 tput sgr0
 echo
 patch < patches/dwm-alwayscenter-20200625-f04cac6.diff
+echo
 tput setaf 2
 echo "################################################################"
 echo "Patch 6"
@@ -111,6 +139,7 @@ echo
 patch < patches/dwm-dragmfact-6.2.diff
 
 # personal patching as official did not work
+echo
 tput setaf 2
 echo "################################################################"
 echo "Patch 7"
@@ -134,28 +163,55 @@ patch < patched-patches/dwm-cyclelayouts-2024-07-06.diff
 # patch < patches/dwm-underlinetags-6.2.diff
 # patch < patches/dwm-shif-tools-6.2.diff
 
+echo
+tput setaf 2
+echo "################################################################"
+echo "CHANGING MY PERSONAL PREFERENCES"
+echo "################################################################"
+tput sgr0
+echo
+
 # personal config
+# move official patched config one level up
 cp -v config.def.h ../config.def.h
 cd ..
+
+# compare the difference to get a diff
 diff -u config.def.h config.def.custom.h > to-be-changed.diff
 cp -v to-be-changed.diff dwm
 cd dwm
 patch < to-be-changed.diff
 
-echo "Change directory for autostart"
-sed -i 's|static const char localshare\[] = ".local/share";|static const char localshare\[] = ".config";|' dwm.c
+echo
+tput setaf 2
+echo "################################################################"
+echo "BUILDING DWM"
+echo "################################################################"
+tput sgr0
+echo
 
+# Building Dwm
 sh rebuild.sh
 cd ..
+
+
+echo
+tput setaf 2
+echo "################################################################"
+echo "BUILDING SYSMON"
+echo "################################################################"
+tput sgr0
+echo
+
+# Building Sysmon
 # https://github.com/blmayer/sysmon
 echo "Adding sysmon"
 git clone https://github.com/blmayer/sysmon
-cp rebuild-sysmon.sh sysmon
+cp sysmon.sh sysmon
 cd sysmon
 sed -i 's|PREFIX=${HOME}/.local|PREFIX=/usr|' Makefile
-sh rebuild-sysmon.sh
+sh sysmon.sh
 
-echo
 echo
 tput setaf 2
 echo "################################################################"

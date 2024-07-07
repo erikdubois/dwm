@@ -12,7 +12,7 @@ super + F1
 
 # Atom
 super + F2
-	atom
+	code
 
 #Inkscape
 super + F3
@@ -60,7 +60,7 @@ super + F12
 
 #Atom
 super + e
-    atom
+    code
 
 #Browser
 super + w
@@ -86,17 +86,9 @@ super + shift + x
 super + r
     rofi-theme-selector
 
-#Urxvt
-#super + t
-#    urxvt
-
 #Pavucontrol
 super + v
     pavucontrol
-
-#Pragha
-#super + m
-#    pragha
 
 #alacritty
 super + Return

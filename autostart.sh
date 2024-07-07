@@ -8,6 +8,7 @@ function run {
 }
 
 sysmon --format 'CPU $CPU% | MEM $MEM% | $TIME' &
+
 #run "dex $HOME/.config/autostart/arcolinux-welcome-app.desktop"
 
 #for virtualbox
@@ -23,7 +24,7 @@ sysmon --format 'CPU $CPU% | MEM $MEM% | $TIME' &
 #run xrandr --output HDMI2 --right-of HDMI1 --auto
 #autorandr horizontal
 
-run "nm-applet"
+#run "nm-applet"
 #run "pamac-tray"
 run "variety"
 run "xfce4-power-manager"
