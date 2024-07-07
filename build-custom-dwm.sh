@@ -157,7 +157,7 @@ echo "Patch 8"
 echo "################################################################"
 tput sgr0
 echo
-patch < patched-patches/dwm-r1615-2024-07-06.diff
+patch < patched-patches/dwm-r1615-2024-07-07.diff
 
 #patch < patched-patches/dwm-r1615-2024-07-06.diff
 # exit 1
