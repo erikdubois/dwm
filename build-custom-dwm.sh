@@ -27,6 +27,7 @@ sudo pacman -S --noconfirm --needed numlockx
 sudo pacman -S --noconfirm --needed feh
 sudo pacman -S --noconfirm --needed xorg-xrandr
 sudo pacman -S --noconfirm --needed arandr
+sudo pacman -S --noconfirm --needed lxappearance
 
 # File management
 if [ -d dwm ]; then
