@@ -15,6 +15,8 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
+#define ICONSIZE 16   /* icon size */
+#define ICONSPACING 5 /* space between icon and title */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";

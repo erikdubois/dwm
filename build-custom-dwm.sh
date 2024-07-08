@@ -28,6 +28,7 @@ sudo pacman -S --noconfirm --needed feh
 sudo pacman -S --noconfirm --needed xorg-xrandr
 sudo pacman -S --noconfirm --needed arandr
 sudo pacman -S --noconfirm --needed lxappearance
+sudo pacman -S --noconfirm --needed imlib2
 
 # File management
 if [ -d dwm ]; then
@@ -167,6 +168,15 @@ echo "################################################################"
 tput sgr0
 echo
 patch < patches/dwm-actualfullscreen-20211013-cb3f58a.diff
+
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 10"
+echo "################################################################"
+tput sgr0
+echo
+patch < patched-patches/dwm-winicon-6.3-v2.1-2024-07-08.diff
 
 #patch < patched-patches/dwm-r1615-2024-07-06.diff
 # exit 1

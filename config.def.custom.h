@@ -15,6 +15,8 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
+#define ICONSIZE 16   /* icon size */
+#define ICONSPACING 5 /* space between icon and title */
 static const char *fonts[]          = { "monospace:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#222222";
@@ -133,7 +135,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_m, 	   cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+	{ MODKEY,             			XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
