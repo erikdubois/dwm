@@ -19,6 +19,12 @@ echo "################################################################"
 tput sgr0
 echo
 
+#read -p "Do you want to get the scripts from the internet? (yes/y/Y or no/n/N) " user_choice
+# Normalize user input to lowercase
+#user_choice=$(echo "$user_choice" | tr '[:upper:]' '[:lower:]')
+
+user_choice="n"
+
 # install packages
 sudo pacman -S --noconfirm --needed sxhkd
 sudo pacman -S --noconfirm --needed go
@@ -61,15 +67,30 @@ cp -v rebuild.sh dwm
 mkdir dwm/patches
 cp -v get-patches.sh dwm/patches
 cd dwm/patches
-echo
-tput setaf 2
-echo "################################################################"
-echo "GET PATCHES"
-echo "################################################################"
-tput sgr0
-echo
-sh get-patches.sh
-cd ..
+
+# Perform the action based on user's choice
+if [ "$user_choice" = "yes" ] || [ "$user_choice" = "y" ]; then
+	echo
+	tput setaf 2
+	echo "################################################################"
+	echo "GET PATCHES FROM ONLINE"
+	echo "################################################################"
+	tput sgr0
+	echo
+	sh get-patches.sh
+	cd ..
+else
+	echo
+	tput setaf 2
+	echo "################################################################"
+	echo "GET PATCHES FROM BACKUP FOLDER"
+	echo "################################################################"
+	tput sgr0
+	echo
+	echo $(pwd)
+	cp ../../patches-backup/* ../patches
+	cd ..
+fi
 
 echo
 tput setaf 2
