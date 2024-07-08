@@ -17,6 +17,7 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int user_bh            = 26;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "monospace:size=14" };
 static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
@@ -131,9 +132,6 @@ static const Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	
     // layout (preferences = no 1,3,4,8,9)
     { MODKEY|ControlMask,               XK_F1,       setlayout,      {.v = &layouts[0]} },

@@ -213,6 +213,15 @@ patch < patched-patches/chadwm-move-or-replace-2024-07-08.diff
 echo
 tput setaf 2
 echo "################################################################"
+echo "Patch 12"
+echo "################################################################"
+tput sgr0
+echo
+patch < patched-patches/dwm-bar-height-6.2-2024-07-08.diff
+
+echo
+tput setaf 2
+echo "################################################################"
 echo "CHANGING MY PERSONAL PREFERENCES"
 echo "################################################################"
 tput sgr0
