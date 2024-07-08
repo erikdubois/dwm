@@ -1,5 +1,5 @@
---- config.def.h	2024-07-08 15:40:16.380314904 +0200
-+++ config.def.custom.h	2024-07-08 15:38:16.565727301 +0200
+--- config.def.h	2024-07-08 15:58:06.465440405 +0200
++++ config.def.custom.h	2024-07-08 15:56:35.137667023 +0200
 @@ -3,12 +3,12 @@
  /* appearance */
  static const int vertpad            = 10;       /* vertical padding of bar */
@@ -27,12 +27,13 @@
  static const char col_gray1[]       = "#222222";
  static const char col_gray2[]       = "#444444";
  static const char col_gray3[]       = "#bbbbbb";
-@@ -48,10 +48,12 @@
+@@ -48,10 +48,13 @@
  	/* class      instance    title       tags mask     isfloating   monitor */
  	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
  	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 +	{ "discord",  NULL,       NULL,       1,            0,            0 },
 +	{ "Telegram", NULL,       NULL,       1,            0,            1 },
++    { "Nlogout",  NULL,       NULL,       0,            1,           -1,},
  };
  
  /* layout(s) */
@@ -41,7 +42,7 @@
  static const int nmaster     = 1;    /* number of clients in master area */
  static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
  static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-@@ -78,7 +80,7 @@
+@@ -78,7 +81,7 @@
  };
  
  /* key definitions */
@@ -50,7 +51,7 @@
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -91,14 +93,16 @@
+@@ -91,14 +94,16 @@
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -70,7 +71,7 @@
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-@@ -128,31 +132,47 @@
+@@ -128,31 +133,47 @@
  	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
  	{ MODKEY,                       XK_Tab,    view,           {0} },
  	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
