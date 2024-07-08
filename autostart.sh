@@ -7,7 +7,7 @@ function run {
   fi
 }
 
-sysmon --format 'CPU $CPU% | MEM $MEM% | $TIME' &
+sysmon --format '  CPU $CPU% | MEM $MEM% | $TIME' &
 
 #run "dex $HOME/.config/autostart/arcolinux-welcome-app.desktop"
 
