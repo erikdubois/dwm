@@ -9,6 +9,7 @@ wget https://dwm.suckless.org/patches/bartoggle/dwm-bartoggle-6.4.diff
 wget https://dwm.suckless.org/patches/cyclelayouts/dwm-cyclelayouts-20180524-6.2.diff
 wget https://dwm.suckless.org/patches/dragmfact/dwm-dragmfact-6.2.diff
 wget https://dwm.suckless.org/patches/fakefullscreen/dwm-fakefullscreen-20210714-138b405.diff
+wget https://dwm.suckless.org/patches/launcher/dwm-launchers-20200527-f09418b.diff
 wget https://dwm.suckless.org/patches/movestack/dwm-movestack-20211115-a786211.diff
 wget https://dwm.suckless.org/patches/restartsig/dwm-restartsig-20180523-6.2.diff
 wget https://dwm.suckless.org/patches/rotatestack/dwm-rotatestack-20161021-ab9571b.diff

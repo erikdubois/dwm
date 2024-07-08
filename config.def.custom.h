@@ -15,8 +15,8 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12" };
-static const char dmenufont[]       = "monospace:size=12";
+static const char *fonts[]          = { "monospace:size=13" };
+static const char dmenufont[]       = "monospace:size=13";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -128,9 +128,24 @@ static const Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	
+    // layout (preferences = no 1,3,4,8,9)
+    { MODKEY|ControlMask,               XK_F1,       setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F2,       setlayout,      {.v = &layouts[2]} },
+    { MODKEY|ControlMask,               XK_F3,       setlayout,      {.v = &layouts[5]} },
+    { MODKEY|ControlMask,               XK_F4,       setlayout,      {.v = &layouts[6]} },
+    { MODKEY|ControlMask,               XK_F5,       setlayout,      {.v = &layouts[7]} },
+    { MODKEY|ControlMask,               XK_F6,       setlayout,      {.v = &layouts[11]} },
+    { MODKEY|ControlMask,               XK_F7,       setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F8,       setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F9,       setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F10,      setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F11,      setlayout,      {.v = &layouts[0]} },
+    { MODKEY|ControlMask,               XK_F12,      setlayout,      {.v = &layouts[0]} },
+
 	{ MODKEY|ControlMask,			XK_p,	   cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_m, 	   cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
