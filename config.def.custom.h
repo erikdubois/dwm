@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -15,8 +15,8 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=13" };
-static const char dmenufont[]       = "monospace:size=13";
+static const char *fonts[]          = { "monospace:size=14" };
+static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
