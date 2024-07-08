@@ -10,7 +10,7 @@
 super + F1
 	vivaldi-stable
 
-# Atom
+# code
 super + F2
 	code
 
@@ -70,10 +70,6 @@ super + w
 super + c
     conky-toggle
 
-#Htop
-#super + h
-#    urxvt 'htop task manager' -e htop
-
 #archlinux-logout
 super + x
     archlinux-logout
@@ -81,6 +77,10 @@ super + x
 #powermenu
 super + shift + x
     arcolinux-powermenu
+
+#nlogout
+alt + shift + x
+    nlogout
 
 #Rofi theme selector
 super + r
@@ -132,6 +132,10 @@ super + shift + s
 #################################################################
 # CONTROL + ALT KEYS
 #################################################################
+
+#arcolinux-application-glade
+ctrl + alt + h
+     arcolinux-app-glade
 
 #arcolinux-welcome-app
 ctrl + alt + w
@@ -297,6 +301,11 @@ alt + shift + u
 ctrl + shift + Escape
     xfce4-taskmanager
 
+ctrl + alt + End
+    dex --term alacritty /usr/share/applications/btop.desktop
+
+ctrl + alt + n
+    dex --term alacritty /usr/share/applications/btop.desktop
 
 #################################################################
 #     SCREENSHOTS
@@ -389,4 +398,4 @@ XF86MonBrightnessDown
 
 #Picom Toggle
 ctrl + alt + o
-    ~/.config/arco-dwm/scripts/picom-toggle.sh
+    ~/.config/dwm/picom-toggle.sh

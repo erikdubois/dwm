@@ -50,6 +50,7 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "discord",  NULL,       NULL,       1,            0,            0 },
 	{ "Telegram", NULL,       NULL,       1,            0,            1 },
+    { "Nlogout",  NULL,       NULL,       0,            1,           -1,},
 };
 
 /* layout(s) */

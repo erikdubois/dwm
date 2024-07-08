@@ -29,6 +29,7 @@ sudo pacman -S --noconfirm --needed xorg-xrandr
 sudo pacman -S --noconfirm --needed arandr
 sudo pacman -S --noconfirm --needed lxappearance
 sudo pacman -S --noconfirm --needed imlib2
+sudo pacman -S --noconfirm --needed dex
 
 # File management
 if [ -d dwm ]; then
@@ -48,6 +49,7 @@ sudo cp -vf dwm.desktop /usr/share/xsessions/dwm.desktop
 # copying files to ~/.config/dwm
 cp -v autostart.sh ~/.config/dwm
 cp -v sxhkdrc ~/.config/dwm
+cp -v picom-toggle.sh ~/.config/dwm
 
 # start from the official github of Dwm
 git clone https://git.suckless.org/dwm
