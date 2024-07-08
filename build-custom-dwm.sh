@@ -178,6 +178,16 @@ tput sgr0
 echo
 patch < patched-patches/dwm-barpadding-20211020-a786211-2024-07-8.diff
 
+echo
+tput setaf 2
+echo "################################################################"
+echo "Patch 11"
+echo "################################################################"
+tput sgr0
+echo
+patch < patched-patches/chadwm-move-or-replace-2024-07-08.diff
+
+
 #patch < patched-patches/dwm-r1615-2024-07-06.diff
 # exit 1
 # echo "HERE"

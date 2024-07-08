@@ -1,5 +1,5 @@
---- config.def.h	2024-07-08 13:49:06.332436495 +0200
-+++ config.def.custom.h	2024-07-08 13:48:52.076015815 +0200
+--- config.def.h	2024-07-08 14:41:30.814093777 +0200
++++ config.def.custom.h	2024-07-08 14:40:30.420061233 +0200
 @@ -3,12 +3,12 @@
  /* appearance */
  static const int vertpad            = 10;       /* vertical padding of bar */
