@@ -210,22 +210,6 @@ tput sgr0
 echo
 patch < patched-patches/chadwm-move-or-replace-2024-07-08.diff
 
-
-#patch < patched-patches/dwm-r1615-2024-07-06.diff
-# exit 1
-# echo "HERE"
-# patch < patches/dwm-r1615-selfrestart.diff
-
-# patch < patches/dwm-winicon-6.3-v2.1.diff
-
-# exit 1
-# patch < patches/dwm-movestack-20211115-a786211.diff
-
-# patch < patches/dwm-r1615-selfrestart.diff
-# exit 1
-# patch < patches/dwm-underlinetags-6.2.diff
-# patch < patches/dwm-shif-tools-6.2.diff
-
 echo
 tput setaf 2
 echo "################################################################"
