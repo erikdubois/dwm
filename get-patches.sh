@@ -5,6 +5,7 @@ wget https://dwm.suckless.org/patches/alpha/dwm-alpha-20230401-348f655.diff
 wget https://dwm.suckless.org/patches/alwayscenter/dwm-alwayscenter-20200625-f04cac6.diff
 wget https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff
 wget https://dwm.suckless.org/patches/awesomebar/dwm-awesomebar-20230431-6.4.diff
+wget https://dwm.suckless.org/patches/barpadding/dwm-barpadding-20211020-a786211.diff
 wget https://dwm.suckless.org/patches/bartoggle/dwm-bartoggle-6.4.diff
 wget https://dwm.suckless.org/patches/cyclelayouts/dwm-cyclelayouts-20180524-6.2.diff
 wget https://dwm.suckless.org/patches/dragmfact/dwm-dragmfact-6.2.diff

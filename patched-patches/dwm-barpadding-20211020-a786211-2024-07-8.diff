@@ -1,0 +1,100 @@
+--- config.def.h.orig	2024-07-08 13:42:28.879327799 +0200
++++ config.def.h	2024-07-08 13:45:53.519103217 +0200
+@@ -1,6 +1,8 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* appearance */
++static const int vertpad            = 10;       /* vertical padding of bar */
++static const int sidepad            = 10;       /* horizontal padding of bar */
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
+--- dwm.c.orig	2024-07-08 13:25:22.038109667 +0200
++++ dwm.c	2024-07-08 13:29:35.863408537 +0200
+@@ -256,6 +256,8 @@
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh;               /* bar height */
+ static int lrpad;            /* sum of left and right padding for text */
++static int vp;               /* vertical padding for bar */
++static int sp;               /* side padding for bar */
+ static int (*xerrorxlib)(Display *, XErrorEvent *);
+ static unsigned int numlockmask = 0;
+ static void (*handler[LASTEvent]) (XEvent *) = {
+@@ -591,7 +593,7 @@
+ 				for (c = m->clients; c; c = c->next)
+ 					if (c->isfullscreen)
+ 						resizeclient(c, m->mx, m->my, m->mw, m->mh);
+-				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
++				XMoveResizeWindow(dpy, m->barwin, m->wx + sp, m->by + vp, m->ww -  2 * sp, bh);
+ 			}
+ 			focus(NULL);
+ 			arrange(NULL);
+@@ -753,7 +755,7 @@
+ 	if (m == selmon && showstatus) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+ 		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+-		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
++		drw_text(drw, m->ww - tw - 2 * sp, 0, tw, bh, 0, stext, 0);
+ 	}
+ 
+ 	for (c = m->clients; c; c = c->next) {
+@@ -785,12 +787,12 @@
+ 	if ((w = m->ww - tw - x) > bh) {
+ 		if (m->sel && showtitle) {
+ 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
++			drw_text(drw, x, 0, w - 2 *sp, bh, lrpad / 2, m->sel->name, 0);
+ 			if (m->sel->isfloating && showfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 		} else {
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_rect(drw, x, 0, w, bh, 1, 1);
++			drw_rect(drw, x, 0, w -2 * sp, bh, 1, 1);
+ 		}
+ 	}
+ 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
+@@ -1724,7 +1726,10 @@
+ 		die("no fonts could be loaded.");
+ 	lrpad = drw->fonts->h;
+ 	bh = drw->fonts->h + 2;
++	sp = sidepad;
++	vp = (topbar == 1) ? vertpad : - vertpad;
+ 	updategeom();
++
+ 	/* init atoms */
+ 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
+ 	wmatom[WMProtocols] = XInternAtom(dpy, "WM_PROTOCOLS", False);
+@@ -1850,7 +1855,7 @@
+ {
+ 	selmon->showbar = !selmon->showbar;
+ 	updatebarpos(selmon);
+-	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
++	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx + sp, selmon->by + vp, selmon->ww - 2 * sp, bh);
+ 	arrange(selmon);
+ }
+ 
+@@ -1970,7 +1975,7 @@
+ 	for (m = mons; m; m = m->next) {
+ 		if (m->barwin)
+ 			continue;
+-		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, depth,
++		m->barwin = XCreateWindow(dpy, root, m->wx +sp, m->by + vp, m->ww -2 * sp, bh, 0, depth,
+ 				InputOutput, visual,
+ 				CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &wa);
+ 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
+@@ -1985,11 +1990,11 @@
+ 	m->wy = m->my;
+ 	m->wh = m->mh;
+ 	if (m->showbar) {
+-		m->wh -= bh;
+-		m->by = m->topbar ? m->wy : m->wy + m->wh;
+-		m->wy = m->topbar ? m->wy + bh : m->wy;
++		m->wh = m->wh - vertpad - bh;
++		m->by = m->topbar ? m->wy : m->wy + m->wh + vertpad;
++		m->wy = m->topbar ? m->wy + bh + vp : m->wy;
+ 	} else
+-		m->by = -bh;
++		m->by = -bh - vp;
+ }
+ 
+ void
