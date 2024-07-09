@@ -3,7 +3,7 @@
 /* appearance */
 static const int vertpad            = 10;       /* vertical padding of bar */
 static const int sidepad            = 10;       /* horizontal padding of bar */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -17,6 +17,7 @@ static const int showlayout         = 1;        /* 0 means no layout indicator *
 static const int showstatus         = 1;        /* 0 means no status bar */
 static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int user_bh            = 26;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "monospace:size=14" };
 static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
@@ -99,6 +100,11 @@ static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ MODKEY,                       XK_o,      shiftviewclients,    { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,	   shiftview,           { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_i,	   shiftview,           { .i = -1 } },
+	{ MODKEY,	                    XK_i,      shiftviewclients,    { .i = -1 } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = filemanager } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
@@ -108,6 +114,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,				XK_h,      shiftboth,      { .i = -1 }	},
+	{ MODKEY|ControlMask,			XK_h,      shiftswaptags,  { .i = -1 }	},
+	{ MODKEY|ControlMask,			XK_l,      shiftswaptags,  { .i = +1 }	},
+	{ MODKEY|ShiftMask,             XK_l,      shiftboth,      { .i = +1 }	},
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
@@ -131,9 +141,6 @@ static const Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	
     // layout (preferences = no 1,3,4,8,9)
     { MODKEY|ControlMask,               XK_F1,       setlayout,      {.v = &layouts[0]} },
@@ -148,7 +155,6 @@ static const Key keys[] = {
     { MODKEY|ControlMask,               XK_F10,      setlayout,      {.v = &layouts[0]} },
     { MODKEY|ControlMask,               XK_F11,      setlayout,      {.v = &layouts[0]} },
     { MODKEY|ControlMask,               XK_F12,      setlayout,      {.v = &layouts[0]} },
-
 	{ MODKEY|ControlMask,			XK_p,	   cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_m, 	   cyclelayout,    {.i = +1 } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },

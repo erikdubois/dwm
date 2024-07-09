@@ -1,11 +1,11 @@
---- config.def.h	2024-07-08 19:38:44.061230568 +0200
-+++ config.def.custom.h	2024-07-08 19:37:34.853181671 +0200
+--- config.def.h	2024-07-09 07:52:49.473126309 +0200
++++ config.def.custom.h	2024-07-09 07:52:36.986750526 +0200
 @@ -3,12 +3,12 @@
  /* appearance */
  static const int vertpad            = 10;       /* vertical padding of bar */
  static const int sidepad            = 10;       /* horizontal padding of bar */
 -static const unsigned int borderpx  = 1;        /* border pixel of windows */
-+static const unsigned int borderpx  = 2;        /* border pixel of windows */
++static const unsigned int borderpx  = 3;        /* border pixel of windows */
  static const unsigned int snap      = 32;       /* snap pixel */
 -static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 +static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
@@ -55,7 +55,7 @@
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -92,14 +93,16 @@
+@@ -92,7 +93,8 @@
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -64,10 +64,11 @@
 +static const char *termcmd[]  = { "alacritty", NULL };
  
  #include "selfrestart.c"
- 
- static const Key keys[] = {
- 	/* modifier                     key        function        argument */
--	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+ #include "shift-tools.c"
+@@ -104,7 +106,9 @@
+ 	{ MODKEY|ShiftMask,             XK_i,	   shiftview,           { .i = -1 } },
+ 	{ MODKEY,	                    XK_i,      shiftviewclients,    { .i = -1 } },
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 -	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 +	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 +	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = filemanager } },
@@ -75,9 +76,15 @@
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-@@ -129,31 +132,45 @@
+@@ -136,33 +140,49 @@
+ 	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
+ 	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
  	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
- 	{ MODKEY,                       XK_Tab,    view,           {0} },
+-	{ MODKEY,                       XK_Tab,    view,           {0} },
++	{ MODKEY,                       XK_Tab,    shiftviewclients,    { .i = +1 } },
++	{ MODKEY|ShiftMask,             XK_Tab,    shiftviewclients,    { .i = -1 } },
++	{ Mod1Mask,                     XK_Tab,    shiftviewclients,    { .i = +1 } },
++	{ Mod1Mask|ShiftMask,           XK_Tab,    shiftviewclients,    { .i = -1 } },
  	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 -	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 -	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -98,7 +105,6 @@
 +    { MODKEY|ControlMask,               XK_F10,      setlayout,      {.v = &layouts[0]} },
 +    { MODKEY|ControlMask,               XK_F11,      setlayout,      {.v = &layouts[0]} },
 +    { MODKEY|ControlMask,               XK_F12,      setlayout,      {.v = &layouts[0]} },
-+
 +	{ MODKEY|ControlMask,			XK_p,	   cyclelayout,    {.i = -1 } },
 +	{ MODKEY|ControlMask,           XK_m, 	   cyclelayout,    {.i = +1 } },
  	{ MODKEY,                       XK_space,  setlayout,      {0} },
