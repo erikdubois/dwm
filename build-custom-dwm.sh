@@ -63,6 +63,10 @@ git clone https://git.suckless.org/dwm
 # copy the rebuild script to dwm
 cp -v rebuild.sh dwm
 
+# copy over themes
+mkdir dwm/themes
+cp -v themes/* dwm/themes
+
 # offical patches
 mkdir dwm/patches
 cp -v get-patches.sh dwm/patches
