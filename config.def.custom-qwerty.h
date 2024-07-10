@@ -97,6 +97,7 @@ static const char *filemanager[]  = { "thunar", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 #include "selfrestart.c"
+#include "shift-tools.c"
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -139,7 +140,10 @@ static const Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY,                       XK_Tab,    shiftviewclients,    { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Tab,    shiftviewclients,    { .i = -1 } },
+	{ Mod1Mask,                     XK_Tab,    shiftviewclients,    { .i = +1 } },
+	{ Mod1Mask|ShiftMask,           XK_Tab,    shiftviewclients,    { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	
     // layout (preferences = no 1,3,4,8,9)
