@@ -232,6 +232,16 @@ patch < patched-patches/dwm-shif-tools-6.2-24-07-09.diff
 echo
 tput setaf 2
 echo "################################################################"
+echo "Patch 14"
+echo "################################################################"
+tput sgr0
+echo
+
+patch < patched-patches/dwm-launcher-2024-07-10.diff
+
+echo
+tput setaf 2
+echo "################################################################"
 echo "CHANGING MY PERSONAL PREFERENCES"
 echo "################################################################"
 tput sgr0
