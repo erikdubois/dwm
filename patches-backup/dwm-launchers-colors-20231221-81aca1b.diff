@@ -1,0 +1,105 @@
+From 81aca1b1533076fe353bee2d29d169adfca55b44 Mon Sep 17 00:00:00 2001
+From: fennec <xovo6six@gmail.com>
+Date: Thu, 21 Dec 2023 13:53:18 +0000
+Subject: [PATCH] Patch for launcher icon colors
+
+---
+ chadwm/config.def.h | 17 +++++++++++++++++
+ chadwm/dwm.c        | 32 +++++++++++++++++++++++++++++++-
+ 2 files changed, 48 insertions(+), 1 deletion(-)
+
+diff --git a/chadwm/config.def.h b/chadwm/config.def.h
+index 45e60b2..fbaf85c 100644
+--- a/chadwm/config.def.h
++++ b/chadwm/config.def.h
+@@ -59,16 +59,32 @@ static const char *colors[][3]      = {
+     [SchemeBtnPrev]    = { green,   black,  black },
+     [SchemeBtnNext]    = { yellow,  black,  black },
+     [SchemeBtnClose]   = { red,     black,  black },
++    [SchemeColorEW]    = { orange,   black,  black }, // color ewww launcher icon
++    [SchemeColorFF]    = { pink,   black,  black }, // color firefox launcher icon
++    [SchemeColorDS]    = { red,   black,  black }, // color discord launcher icon
++    [SchemeColorTG]    = { green,   black,  black }, // color telegram launcher icon
++    [SchemeColorMS]    = { blue,   black,  black }, // color mintstick launcher icon
++    [SchemeColorPC]    = { yellow,   black,  black }, // color pavucontrol launcher icon
+ };
+ 
+ /* tagging */
+ static char *tags[] = {"", "", "", "", ""};
+ 
+ static const char* eww[] = { "eww", "open" , "eww", NULL };
++static const char* firefox[] = { "firefox", "open", "firefox", NULL };
++static const char* discord[] = { "discord", "open" , "discord", NULL };
++static const char* telegram[] = { "telegram-desktop", "open" , "telegram-desktop", NULL };
++static const char* mintstick[] = { "mintstick", "-m", "iso", NULL};
++static const char* pavucontrol[] = { "pavucontrol", NULL };
+ 
+ static const Launcher launchers[] = {
+     /* command     name to display */
+     { eww,         "" },
++    { firefox,         "" },
++    { discord,       "ﱲ" },
++    { telegram,      "" },
++    { mintstick,     "虜" },
++    { pavucontrol,   "墳" },
+ };
+ 
+ static const int tagschemes[] = {
+@@ -287,3 +303,4 @@ static const Button buttons[] = {
+     { ClkTabNext,           0,              Button1,        movestack,      { .i = +1 } },
+     { ClkTabClose,          0,              Button1,        killclient,     {0} },
+ };
++
+diff --git a/chadwm/dwm.c b/chadwm/dwm.c
+index ddb7e0c..84639cc 100644
+--- a/chadwm/dwm.c
++++ b/chadwm/dwm.c
+@@ -108,7 +108,13 @@ enum {
+   TabNorm,
+   SchemeBtnPrev,
+   SchemeBtnNext,
+-  SchemeBtnClose
++  SchemeBtnClose,
++  SchemeColorEW,
++  SchemeColorFF,
++  SchemeColorDS,
++  SchemeColorTG,
++  SchemeColorMS,
++  SchemeColorPC
+ }; /* color schemes */
+ enum {
+   NetSupported,
+@@ -1519,6 +1525,30 @@ void drawbar(Monitor *m) {
+ 
+   	for (i = 0; i < LENGTH(launchers); i++)
+ 	{
++        if (launchers[i].command == eww){
++            drw_setscheme(drw, scheme[SchemeColorEW]);
++        }
++
++        if (launchers[i].command == firefox){
++          drw_setscheme(drw, scheme[SchemeColorFF]);
++        }
++
++        if (launchers[i].command == discord){
++          drw_setscheme(drw, scheme[SchemeColorDS]);
++        }
++
++        if (launchers[i].command == telegram){
++          drw_setscheme(drw, scheme[SchemeColorTG]);
++        }
++
++        if (launchers[i].command == mintstick){
++          drw_setscheme(drw, scheme[SchemeColorMS]);
++        }
++
++        if (launchers[i].command == pavucontrol){
++          drw_setscheme(drw, scheme[SchemeColorPC]);
++        }
++
+ 		w = TEXTW(launchers[i].name);
+ 		drw_text(drw, x, 0, w, bh, lrpad / 2, launchers[i].name, urg & 1 << i);
+ 		x += w;
+-- 
+2.43.0
+

@@ -40,33 +40,6 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-//static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-//static char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
-//static char *tags[] = { "", "", "", "", "", "", "", "", "", "" };
-//static char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files", "Music" };
-//static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九", "十"};
-
-
-/* launcher commands (They must be NULL terminated) */
-static const char* firefox[] = { "firefox", NULL };
-static const char* vivaldi[] = { "vivaldi", NULL };
-static const char* eww[] = { "eww", "open" , "eww", NULL };
-static const char* discord[] = { "discord", "open" , "discord", NULL };
-static const char* telegram[] = { "telegram-desktop", "open" , "telegram-desktop", NULL };
-static const char* mintstick[] = { "mintstick", "-m", "iso", NULL};
-static const char* pavucontrol[] = { "pavucontrol", NULL };
-
-static const Launcher launchers[] = {
-    /* command     name to display */
-
-    { discord,       "ﱲ" },
-    { firefox,       "" },
-    { eww,           "數" },
-    { mintstick,     "虜" },
-    { pavucontrol,   "墳" },
-    { telegram,      "" },
-    { vivaldi,       "" },
-};
 
 static const Rule rules[] = {
 	/* xprop(1):

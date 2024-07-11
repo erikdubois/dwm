@@ -1,5 +1,5 @@
---- config.def.h	2024-07-10 08:38:05.704569039 +0200
-+++ config.def.custom.h	2024-07-10 08:37:29.569005131 +0200
+--- config.def.h	2024-07-11 08:48:12.819861367 +0200
++++ config.def.custom.h	2024-07-10 10:37:49.659587939 +0200
 @@ -3,12 +3,12 @@
  /* appearance */
  static const int vertpad            = 10;       /* vertical padding of bar */
@@ -29,7 +29,19 @@
  static const char col_gray1[]       = "#222222";
  static const char col_gray2[]       = "#444444";
  static const char col_gray3[]       = "#bbbbbb";
-@@ -74,12 +74,13 @@
+@@ -40,6 +40,11 @@
+ 
+ /* tagging */
+ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
++//static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
++//static char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
++//static char *tags[] = { "", "", "", "", "", "", "", "", "", "" };
++//static char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files", "Music" };
++//static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九", "十"};
+ 
+ static const Rule rules[] = {
+ 	/* xprop(1):
+@@ -47,12 +52,13 @@
  	 *	WM_NAME(STRING) = title
  	 */
  	/* class      instance    title       tags mask     isfloating   monitor */
@@ -46,7 +58,7 @@
  static const int nmaster     = 1;    /* number of clients in master area */
  static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
  static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-@@ -106,7 +107,7 @@
+@@ -79,7 +85,7 @@
  };
  
  /* key definitions */
@@ -55,7 +67,7 @@
  #define TAGKEYS(KEY,TAG) \
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-@@ -119,7 +120,8 @@
+@@ -92,7 +98,8 @@
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -65,7 +77,7 @@
  
  #include "selfrestart.c"
  #include "shift-tools.c"
-@@ -131,7 +133,9 @@
+@@ -104,7 +111,9 @@
  	{ MODKEY|ShiftMask,             XK_i,	   shiftview,           { .i = -1 } },
  	{ MODKEY,	                    XK_i,      shiftviewclients,    { .i = -1 } },
  	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -76,7 +88,7 @@
  	{ MODKEY,                       XK_b,      togglebar,      {0} },
  	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
  	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-@@ -163,33 +167,49 @@
+@@ -136,33 +145,49 @@
  	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
  	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
  	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
