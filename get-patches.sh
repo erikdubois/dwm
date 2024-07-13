@@ -21,6 +21,7 @@ wget https://dwm.suckless.org/patches/selfrestart/dwm-r1615-selfrestart.diff
 wget https://dwm.suckless.org/patches/shift-tools/dwm-shif-tools-6.2.diff
 wget https://dwm.suckless.org/patches/shift-tools/shift-tools.c
 wget https://dwm.suckless.org/patches/status2d/dwm-status2d-systray-6.4.diff
+wget https://dwm.suckless.org/patches/status2d/dwm-status2d-6.3.diff
 wget https://dwm.suckless.org/patches/systray/dwm-systray-20230922-9f88553.diff
 wget https://dwm.suckless.org/patches/tag-previews/dwm-tag-preview-6.3.diff
 wget https://dwm.suckless.org/patches/underlinetags/dwm-underlinetags-6.2.diff

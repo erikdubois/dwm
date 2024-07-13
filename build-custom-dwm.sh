@@ -26,16 +26,26 @@ echo
 user_choice="n"
 
 # install packages
-sudo pacman -S --noconfirm --needed sxhkd
-sudo pacman -S --noconfirm --needed go
-sudo pacman -S --noconfirm --needed rofi-lbonn-wayland
-sudo pacman -S --noconfirm --needed numlockx
-sudo pacman -S --noconfirm --needed feh
-sudo pacman -S --noconfirm --needed xorg-xrandr
+sudo pacman -S --noconfirm --needed alacritty
 sudo pacman -S --noconfirm --needed arandr
-sudo pacman -S --noconfirm --needed lxappearance
-sudo pacman -S --noconfirm --needed imlib2
+sudo pacman -S --noconfirm --needed arcolinux-dwm-st-git
+sudo pacman -S --noconfirm --needed arcolinux-nlogout-git
+sudo pacman -S --noconfirm --needed arcolinux-powermenu-git
+sudo pacman -S --noconfirm --needed btop
 sudo pacman -S --noconfirm --needed dex
+sudo pacman -S --noconfirm --needed feh
+sudo pacman -S --noconfirm --needed flameshot-git
+sudo pacman -S --noconfirm --needed gnome-screenshot
+sudo pacman -S --noconfirm --needed go
+sudo pacman -S --noconfirm --needed imlib2
+sudo pacman -S --noconfirm --needed lxappearance
+sudo pacman -S --noconfirm --needed numlockx
+sudo pacman -S --noconfirm --needed picom
+sudo pacman -S --noconfirm --needed rofi-lbonn-wayland
+sudo pacman -S --noconfirm --needed scrot
+sudo pacman -S --noconfirm --needed sxhkd
+sudo pacman -S --noconfirm --needed xfce4-screenshooter
+sudo pacman -S --noconfirm --needed xorg-xrandr
 
 # File management
 if [ -d dwm ]; then
@@ -56,6 +66,10 @@ sudo cp -vf dwm.desktop /usr/share/xsessions/dwm.desktop
 cp -v autostart.sh ~/.config/dwm
 cp -v sxhkdrc ~/.config/dwm
 cp -v picom-toggle.sh ~/.config/dwm
+# copying folders to ~/.config/dwm
+cp -rv launcher ~/.config/dwm
+cp -rv scripts ~/.config/dwm
+cp -rv picom ~/.config/dwm
 
 # start from the official github of Dwm
 git clone https://git.suckless.org/dwm
@@ -241,7 +255,9 @@ patch < patched-patches/dwm-shif-tools-6.2-24-07-09.diff
 # tput sgr0
 # echo
 
-# patch < patched-patches/dwm-launcher-2024-07-10.diff
+# patch < patches/dwm-status2d-6.3.diff
+
+# exit 1
 
 echo
 tput setaf 2
@@ -291,6 +307,10 @@ cp sysmon.sh sysmon
 cd sysmon
 sed -i 's|PREFIX=${HOME}/.local|PREFIX=/usr|' Makefile
 sh sysmon.sh
+
+if [ -f /usr/local/bin/var ];then
+	/usr/local/bin/var
+fi
 
 echo
 tput setaf 2
